@@ -17,7 +17,7 @@ class GameScene: SKScene {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
-    var backgroundSpeed: CGFloat = 80.0 // speed may vary as you like
+    var backgroundSpeed: CGFloat = 80.0
     var deltaTime: TimeInterval = 0
     var lastUpdateTimeInterval: TimeInterval = 0
     
@@ -42,7 +42,7 @@ class GameScene: SKScene {
             ground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
             ground.size = CGSize(width: self.size.width, height: ground.size.height)
             ground.position = CGPoint(x: CGFloat(i) * size.width, y: 0)
-            ground.zPosition = 1
+            ground.zPosition = 1 //Z is how close to screen not up and down 
             ground.name = "ground"
             self.addChild(ground)
             
