@@ -389,36 +389,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-            func setUpBackgrounds() {
-                //add background
-        
-                for i in 0..<3 {
-                    // add backgrounds, my images were namely, bg-0.png, bg-1.png, bg-2.png
-        
-                    let background = SKSpriteNode(imageNamed: "background.png")
-                    background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-                    background.position = CGPoint(x: CGFloat(i) * size.width, y: 0.0)
-                    background.size = self.size
-                    background.zPosition = -10
-                    background.name = "background"
-                    self.addChild(background)
+//            func setUpBackgrounds() {
+//                //add background
 //
+//                for i in 0..<3 {
+//                    // add backgrounds, my images were namely, bg-0.png, bg-1.png, bg-2.png
+//
+//                    let background = SKSpriteNode(imageNamed: "background.png")
+//                    background.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//                    background.position = CGPoint(x: CGFloat(i) * size.width, y: 0.0)
+//                    background.size = self.size
+//                    background.zPosition = -10
+//                    background.name = "background"
+//                    self.addChild(background)
+////
+////                }
+////
+////                for i in 0..<1 {
+////                    let ground = SKSpriteNode(imageNamed: "ground.png")
+////                    ground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+////                    ground.size = CGSize(width: self.size.width, height: ground.size.height)
+////                    ground.position = CGPoint(x: CGFloat(i) * size.width, y: 0)
+////                    ground.zPosition = 1 //Z is how close to screen not up and down
+////                    ground.name = "ground"
+////                    self.addChild(ground)
+////
+////                }
+//          }
 //                }
-//
-//                for i in 0..<1 {
-//                    let ground = SKSpriteNode(imageNamed: "ground.png")
-//                    ground.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//                    ground.size = CGSize(width: self.size.width, height: ground.size.height)
-//                    ground.position = CGPoint(x: CGFloat(i) * size.width, y: 0)
-//                    ground.zPosition = 1 //Z is how close to screen not up and down
-//                    ground.name = "ground"
-//                    self.addChild(ground)
-//
-//                }
-          }
-                }
-//
-//        //
+////
+////        //
     }
 }
 
