@@ -75,28 +75,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTime: TimeInterval?
     
     // The hero of the game, the player, is created here
-    let player = Witch(imageNamed: "player")
-    let url = Bundle.main.url(forResource: "player", withExtension: "gif")!
-    let player = AnimatedImage(url: url)!
-    var arr = [CGImage]()
-
-    for ix in 0..<anim.frameCount
-    {
-    arr.append(anim.imageAtIndex(index: ix)!)
-    }
-    var arr2 = arr.map {UIImage(cgImage:$0)}
-    let iv = UIImageView()
-
-    iv.animationImages = arr2
-    iv.animationDuration = anim.duration
-    iv.frame.origin = CGPoint(0,100)
-    iv.frame.size = arr2[0].size
-    self.view.addSubview(iv)
-    delay(2) {
-    iv.startAnimating()
-    }
+//   let player = Witch(imageNamed: "player")
+    lazy var player = Witch()
+    
+//
+    private var witch = SKSpriteNode()
+    private var witchRunningFrames: [SKTexture] = []
     
     // MARK:- Setup and Lifecycle Methods
+    
     
     override func didMove(to view: SKView) {
         
@@ -117,6 +104,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set up the player and add her to the scene
         player.setupPhysicsBody()
         addChild(player)
+        buildPlayer()
+        animatePlayer()
         
         // Add a tap gesture recognizer to know when the user tapped the screen
         let tapMethod = #selector(GameScene.handleTap(tapGesture:))
@@ -132,6 +121,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         menuLayer.name = "menuLayer"
         menuLayer.display(message: "Tap to play", score: nil)
         addChild(menuLayer)
+    }
+    func buildPlayer() {
+        let playerAnimatedAtlas = SKTextureAtlas(named: "player")
+        var walkFrames: [SKTexture] = []
+        
+        let numImages = playerAnimatedAtlas.textureNames.count
+        for i in 0...numImages {
+            let playerTextureName = "player\(i)"
+            walkFrames.append(playerAnimatedAtlas.textureNamed(playerTextureName))
+        }
+        witchRunningFrames = walkFrames
+        
+        let firstFrameTexture = witchRunningFrames[0]
+        player = SKSpriteNode(texture: firstFrameTexture) as! Witch
+        
+        let playerX = frame.midX / 2.0
+        let playerY = player.frame.height / 2.0 + 64.0
+        player.position = CGPoint(x: playerX, y: playerY)
+        player.zPosition = 10
+        player.minimumY = playerY
+        addChild(player)
+    }
+    
+    func animatePlayer() {
+       player.run(SKAction.repeatForever(
+            SKAction.animate(with: witchRunningFrames,
+                             timePerFrame: 0.1,
+                             resize: false,
+                             restore: true)),
+                 withKey:"runningInPlaceWitch")
     }
     
     func resetPlayer() {
