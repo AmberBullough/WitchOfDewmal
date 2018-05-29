@@ -6,12 +6,12 @@
 //  Copyright © 2018 CTEC. All rights reserved.
 //
 
+
 import UIKit
 import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +20,15 @@ class GameViewController: UIViewController {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
-                //scene.scaleMode = .aspectFill
+                scene.scaleMode = .aspectFill
                 
-                //Adjusts the size of the scene to match the view
+                // Adjust the size of the scene to match the view
                 let width = view.bounds.width
                 let height = view.bounds.height
                 scene.size = CGSize(width: width, height: height)
                 
                 // Present the scene
-                // view.presentScene(scene)
+                view.presentScene(scene)
             }
             
             view.ignoresSiblingOrder = true

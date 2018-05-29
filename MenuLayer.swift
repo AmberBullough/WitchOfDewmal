@@ -2,9 +2,10 @@
 //  MenuLayer.swift
 //  WitchOfDewmal
 //
-//  Created by Bullough, Amber on 5/25/18.
-//  Copyright © 2018 CTEC. All rights reserved.
+//  Created by Amber Bullough on 5/25/18.
+//  Copyright © 2018 Amber Bullough. All rights reserved.
 //
+
 
 import SpriteKit
 
