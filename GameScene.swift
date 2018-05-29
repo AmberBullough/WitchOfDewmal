@@ -134,7 +134,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         witchRunningFrames = walkFrames
         
         let firstFrameTexture = witchRunningFrames[0]
-        player = SKSpriteNode(texture: firstFrameTexture) as! Witch
+        player = Witch()
+        player.texture = firstFrameTexture
         
         let playerX = frame.midX / 2.0
         let playerY = player.frame.height / 2.0 + 64.0
