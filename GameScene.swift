@@ -75,20 +75,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTime: TimeInterval?
     
     // The hero of the game, the player, is created here
-//   let player = Witch(imageNamed: "player")
-    lazy var player = Witch()
+    let player = Witch(imageNamed: "player")
     
-//
-    private var witch = SKSpriteNode()
-    private var witchRunningFrames: [SKTexture] = []
-    
+   
     // MARK:- Setup and Lifecycle Methods
-    
     
     override func didMove(to view: SKView) {
         
         //Affects gravity on you
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -1.5)
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -9.8)
         physicsWorld.contactDelegate = self
         
         anchorPoint = CGPoint.zero
@@ -104,8 +99,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set up the player and add her to the scene
         player.setupPhysicsBody()
         addChild(player)
-        buildPlayer()
-        animatePlayer()
         
         // Add a tap gesture recognizer to know when the user tapped the screen
         let tapMethod = #selector(GameScene.handleTap(tapGesture:))
@@ -121,37 +114,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         menuLayer.name = "menuLayer"
         menuLayer.display(message: "Tap to play", score: nil)
         addChild(menuLayer)
-    }
-    func buildPlayer() {
-        let playerAnimatedAtlas = SKTextureAtlas(named: "player")
-        var walkFrames: [SKTexture] = []
-        
-        let numImages = playerAnimatedAtlas.textureNames.count
-        for i in 0...numImages {
-            let playerTextureName = "player\(i)"
-            walkFrames.append(playerAnimatedAtlas.textureNamed(playerTextureName))
-        }
-        witchRunningFrames = walkFrames
-        
-        let firstFrameTexture = witchRunningFrames[0]
-        player = Witch()
-        player.texture = firstFrameTexture
-        
-        let playerX = frame.midX / 2.0
-        let playerY = player.frame.height / 2.0 + 64.0
-        player.position = CGPoint(x: playerX, y: playerY)
-        player.zPosition = 10
-        player.minimumY = playerY
-        addChild(player)
-    }
-    
-    func animatePlayer() {
-       player.run(SKAction.repeatForever(
-            SKAction.animate(with: witchRunningFrames,
-                             timePerFrame: 0.1,
-                             resize: false,
-                             restore: true)),
-                 withKey:"runningInPlaceWitch")
     }
     
     func resetPlayer() {
